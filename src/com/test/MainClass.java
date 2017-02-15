@@ -12,19 +12,19 @@ public class MainClass {
 
     public static void main(String[] args) {
 
-        File file = new File(INPUT_FILE);
+        int k1; //the initial number of bolts
+        int l1; //the percentage of lost bolts
+        int m1; //the cost of one bolt
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(file));
+        int k2; //the initial number of nuts
+        int l2; //the percentage of lost nuts
+        int m2; //the cost of one nut
+
+        long x; //extent of damage
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(INPUT_FILE)));
              PrintWriter writer = new PrintWriter(OUTPUT_FILE)) {
-            int k1; //the initial number of bolts
-            int l1; //the percentage of lost bolts
-            int m1; //the cost of one bolt
 
-            int k2; //the initial number of nuts
-            int l2; //the percentage of lost nuts
-            int m2; //the cost of one nut
-
-            long x; //extent of damage
 
             String[] s1 = reader.readLine().split(" ");
             String[] s2 = reader.readLine().split(" ");
