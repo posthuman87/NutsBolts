@@ -6,11 +6,12 @@ public class MainClass {
 
     private static final String RESOURCE_PATH = "d:/projects/Nuts&Bolts/resources/";
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
 
         File file = new File(RESOURCE_PATH + "input.txt");
 
-        try {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file));
+             PrintWriter writer = new PrintWriter(RESOURCE_PATH + "output.txt")) {
             int k1; //the initial number of bolts
             int l1; //the percentage of lost bolts
             int m1; //the cost of one bolt
@@ -21,7 +22,6 @@ public class MainClass {
 
             long x; //extent of damage
 
-            BufferedReader reader = new BufferedReader(new FileReader(file));
             String[] s1 = reader.readLine().split(" ");
             String[] s2 = reader.readLine().split(" ");
 
@@ -33,28 +33,23 @@ public class MainClass {
             l2 = Integer.parseInt(s2[1]);
             m2 = Integer.parseInt(s2[2]);
 
-            reader.close();
-
             long a = (k1 / 100) * l1; //the number of lost bolts
             long b = (k2 / 100) * l2; //the number of lost nuts
             x = a * m1 + b * m2;
 
-            if ((k1-=a) > (k2-=b)) {
+            if ((k1 -= a) > (k2 -= b)) {
                 x += (k1 - k2) * m1;
             } else {
                 x += (k2 - k1) * m2;
             }
 
-            PrintWriter writer = new PrintWriter(RESOURCE_PATH + "output.txt");
             writer.print(x);
-
             writer.flush();
-            writer.close();
 
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("Wrong file path!" + e.getMessage());
+            System.out.println("Wrong file path!\n" + e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Wrong input format!\n" + e.getMessage());
         }
     }
 
