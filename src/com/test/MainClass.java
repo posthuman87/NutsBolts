@@ -6,12 +6,16 @@ public class MainClass {
 
     private static final String RESOURCE_PATH = "d:/projects/Nuts&Bolts/resources/";
 
+    private static final String INPUT_FILE = RESOURCE_PATH + "input.txt";
+
+    private static final String OUTPUT_FILE = RESOURCE_PATH + "output.txt";
+
     public static void main(String[] args) {
 
-        File file = new File(RESOURCE_PATH + "input.txt");
+        File file = new File(INPUT_FILE);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file));
-             PrintWriter writer = new PrintWriter(RESOURCE_PATH + "output.txt")) {
+             PrintWriter writer = new PrintWriter(OUTPUT_FILE)) {
             int k1; //the initial number of bolts
             int l1; //the percentage of lost bolts
             int m1; //the cost of one bolt
